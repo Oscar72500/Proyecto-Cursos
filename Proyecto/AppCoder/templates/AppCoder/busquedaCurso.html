@@ -1,0 +1,14 @@
+{% extends "AppCoder/padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<form action="/AppCoder/buscar/"    method="get">{% csrf_token %}
+    <input type="number" name="comision" id="comision">
+    <input type="submit" value="Buscar">
+ </form>
+    
+  
+
+{% endblock %}
