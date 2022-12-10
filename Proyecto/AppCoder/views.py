@@ -39,6 +39,29 @@ def profesores(request):
 def cursosapi(request):
     cursos_todos=Curso.objects.all()
     return HttpResponse(serializers.serialize('json',cursos_todos))
+
+def leer_cursos(request):
+    cursos_all = Curso.objects.all()
+    return HttpResponse(serializers.serialize('json',cursos_all))
+
+
+def crear_curso(request):
+    curso = Curso(nombre='CursoTest',comision=199,numero_dia=19)
+    curso.save()
+    return HttpResponse(f'Curso {curso.nombre} ha sido creado')
+
+def editar_curso(request):
+    nombre_consulta = 'CursoTest'
+    Curso.objects.filter(nombre=nombre_consulta).update(nombre='NombrenuevoCursoTest')
+    return HttpResponse(f'Curso {nombre_consulta} ha sido actualizado')
+
+def eliminar_curso(request):
+    nombre_nuevo='Oscar'
+    curso = Curso.objects.get(nombre=nombre_nuevo)
+    curso.delete()
+    return HttpResponse(f'Curso {nombre_nuevo} ha sido eliminado')
+
+
     
     
 
